@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_LIST_KEY, LOCAL_STORAGE_SELECTED_LIST_ID_KEY, lists, selectedListId } from "/js/index.js"
+import { LOCAL_STORAGE_LIST_KEY, LOCAL_STORAGE_SELECTED_LIST_ID_KEY, lists, selectedListId } from "../index.js"
 
 //HTML elements
 const listsContainer = document.querySelector('[data-lists]')

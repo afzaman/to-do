@@ -1,5 +1,5 @@
-import List, { Task } from "/js/classes.js"
-import saveAndRender, { renderTaskCount, render, save } from "/js/render.js"
+import List, { Task } from "./modules/classes.js"
+import saveAndRender, { renderTaskCount, render, save } from "./modules/render.js"
 
 //HTML elements
 const listsContainer = document.querySelector('[data-lists]')
@@ -76,7 +76,8 @@ listDueDate.addEventListener('click', e => {
 })
 
 listDueDateInput.addEventListener('change', e => {
-    selectedListId.dueDate = listDueDateInput.value
+    const selectedList = lists.find(list => list.id === selectedListId)
+    selectedList.dueDate = listDueDateInput.value.toString()
     listDueDate.classList.remove('inactive')
     listDueDateInput.classList.add('inactive')
     saveAndRender()
