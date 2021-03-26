@@ -176,10 +176,10 @@
     color: var(--clr-primary);
   }
   
-  [type="checkbox"] {
-    opacity: 0;
-    position: absolute;
-  }
+  // [type="checkbox"] {
+  //   opacity: 0;
+  //   position: absolute;
+  // }
   
   .task label {
     display: flex-inline;
@@ -263,4 +263,13 @@
 
   .inactive {
     display: none;
+  }
+
+  .task-delete {
+    float: right;
+
+  }
+  .task-delete:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }

@@ -11,7 +11,6 @@ const listDescription = document.querySelector('[data-list-description]')
 const listDueDate = document.querySelector('[data-due-date]')
 const listPrioirity = document.querySelector('[data-list-priority]')
 
-
 //Rendering Functions
 export default function saveAndRender() {
     save()
@@ -47,9 +46,14 @@ function renderTasks(selectedList) {
         const checkbox = taskElement.querySelector('input')
         checkbox.id = task.id
         checkbox.checked = task.complete
-        const label = taskElement.querySelector('label')
-        label.htmlFor = task.id
+        const label = taskElement.querySelector('span')
+        label.id = task.id
         label.append(task.name)
+        const deleteButton = taskElement.querySelector('button')
+        deleteButton.id = task.id
+        const taskEdit = taskElement.querySelector('[data-task-edit]')
+        taskEdit.id = "edit" + task.id
+        taskEdit.value = task.name
         tasksContainer.appendChild(taskElement)
     })
 }

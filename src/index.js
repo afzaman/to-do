@@ -13,6 +13,7 @@ const clearCompleteTaskButton = document.querySelector('[data-clear-complete-but
 const listDueDateInput = document.querySelector('[data-due-date-input]')
 const listDueDate = document.querySelector('[data-due-date]')
 
+
 //Local Storage
 export const LOCAL_STORAGE_LIST_KEY = 'task.lists'
 export const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
@@ -28,12 +29,29 @@ listsContainer.addEventListener('click', e => {
 })
 
 tasksContainer.addEventListener('click', e => {
-    if (e.target.tagName.toLowerCase() === 'input') {
+    if (e.target.tagName.toLowerCase() === 'span') {
+        const selectedList = lists.find(list => list.id === selectedListId)
+        const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
+        e.target.classList.add('inactive')
+        const editId = "edit" + e.target.id
+        const taskEdit = document.getElementById(editId)
+        taskEdit.classList.remove('inactive')
+        taskEdit.addEventListener('change', e => {
+            selectedTask.name = taskEdit.value
+            saveAndRender()
+        })
+    }
+    if (e.target.tagName.toLowerCase() === 'input' & e.target.type.toLowerCase() === 'checkbox') {
         const selectedList = lists.find(list => list.id === selectedListId)
         const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
         selectedTask.complete = e.target.checked
         save()
         renderTaskCount(selectedList)
+    }
+    if (e.target.tagName.toLowerCase() === 'button') {
+        const selectedList = lists.find(list => list.id === selectedListId)
+        selectedList.tasks = selectedList.tasks.filter(task => task.id !== e.target.id)
+        saveAndRender()
     }
 })
 
