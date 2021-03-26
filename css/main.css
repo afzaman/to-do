@@ -209,11 +209,6 @@ form {
   color: var(--clr-primary);
 }
 
-[type="checkbox"] {
-  opacity: 0;
-  position: absolute;
-}
-
 .task label {
   display: flex-inline;
   -webkit-box-align: center;
@@ -315,5 +310,16 @@ form {
 
 .inactive {
   display: none;
+}
+
+.task-delete {
+  float: right;
+}
+
+.task-delete:hover {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=main.css.map */
