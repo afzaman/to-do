@@ -7,9 +7,7 @@ const listTitleElement = document.querySelector('[data-list-title]')
 const listCountElement = document.querySelector('[data-list-count]')
 const tasksContainer = document.querySelector('[data-tasks]')
 const taskTempalte = document.getElementById('task-template')
-const listDescription = document.querySelector('[data-list-description]')
 const listDueDate = document.querySelector('[data-due-date]')
-const listPrioirity = document.querySelector('[data-list-priority]')
 
 //Rendering Functions
 export default function saveAndRender() {
@@ -31,9 +29,7 @@ export function render() {
     } else {
         listDisplayContainer.style.display = ''
         listTitleElement.innerText = selectedList.name
-        listDescription.innerText = selectedList.description
         listDueDate.innerText = selectedList.dueDate
-        listPrioirity.innerText = selectedList.priority
         renderTaskCount(selectedList)
         clearElement(tasksContainer)
         renderTasks(selectedList)
@@ -49,6 +45,9 @@ function renderTasks(selectedList) {
         const label = taskElement.querySelector('span')
         label.id = task.id
         label.append(task.name)
+        if (task.complete === true){
+           label.classList.add('strikethrough') 
+        }
         const deleteButton = taskElement.querySelector('button')
         deleteButton.id = task.id
         const taskEdit = taskElement.querySelector('[data-task-edit]')

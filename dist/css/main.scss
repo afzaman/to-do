@@ -1,8 +1,8 @@
 :root {
-    --clr-primary: rgb(54, 112, 199);
+    --clr-primary: rgb(117, 17, 148);
     --clr-light: #f4f4f4;
     --clr-dark: #333;
-    --clr-warning: rgb(99, 36, 36);
+    --clr-warning: rgb(177, 16, 16);
   }
   
   *,
@@ -23,22 +23,13 @@
     display: grid;
     grid:
       "header header header header" auto
-      "...... lists  active ......" auto /
+      "lists active active ......" auto /
       1fr minmax(100px, 300px) minmax(250px, 500px) 1fr;
-  }
-  
-  .title {
-    grid-area: header;
-    text-align: center;
-    font-size: calc(7vw + 2rem);
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
-    margin: -0.3em 0 0.5em;
   }
   
   .all-tasks {
     grid-area: lists;
+    margin: 1rem;
   }
   
   .task-list {
@@ -132,14 +123,23 @@
     grid-area: active;
     background: var(--clr-light);
     color: var(--clr-dark);
+    margin: 1rem;
+    border-radius: 1rem;
   }
   
   .todo-header {
     padding: var(--spacer);
     background: #e4e4e4;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: space-between;
+    border-radius: inherit;
+  }
+
+  .todo-subheader {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
   }
   
   .list-title {
@@ -155,17 +155,6 @@
     margin: 0;
     font-size: 1rem;
   }
-
-  .task-description {
-    margin: 1rem;
-    font-size: 1rem;
-  }
-
-  .task-priority {
-    margin: 1rem;
-    color: red;
-    font-size: 1rem;
-  }
   
   .todo-body {
     padding: var(--spacer);
@@ -176,10 +165,18 @@
     color: var(--clr-primary);
   }
   
-  // [type="checkbox"] {
-  //   opacity: 0;
-  //   position: absolute;
-  // }
+  [type="checkbox"] {
+    --size: 0.75em;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    margin-right: var(--size);
+    cursor: pointer;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 300ms ease-in-out;
+  }
   
   .task label {
     display: flex-inline;
@@ -201,54 +198,6 @@
     height: 1px;
     background: currentColor;
     opacity: 0.1;
-  }
-  
-  .custom-checkbox {
-    --size: 0.75em;
-    display: inline-block;
-    width: var(--size);
-    height: var(--size);
-    margin-right: var(--size);
-    cursor: pointer;
-    border: 2px solid currentColor;
-    border-radius: 50%;
-    transform: scale(1);
-    transition: transform 300ms ease-in-out;
-  }
-  
-  .task:hover .custom-checkbox,
-  [type="checkbox"]:focus + label .custom-checkbox {
-    transform: scale(1.2);
-    color: var(--clr-primary);
-  }
-  
-  [type="checkbox"]:checked + label .custom-checkbox {
-    background: var(--clr-primary);
-    border-color: var(--clr-primary);
-    box-shadow: inset 0 0 0px 2px white;
-  }
-  
-  [type="checkbox"]:checked + label {
-    opacity: 0.5;
-  }
-  
-  .task label::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    left: 1.5em;
-    top: 50%;
-    height: 3px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 150ms ease-in-out;
-  }
-  
-  [type="checkbox"]:checked + label::after {
-    transform: scaleX(1);
-    transform-origin: left;
   }
   
   .delete-stuff {
@@ -273,3 +222,138 @@
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
+
+  .strikethrough {
+    text-decoration: line-through;
+    opacity: 0.2;
+  }
+
+
+
+
+
+
+
+  .checkbox {
+    position: relative;
+    top: 1px;
+    width: 17px;
+    height: 17px;
+    border: 1px solid #c8ccd4;
+    border-radius: 3px;
+    vertical-align: middle;
+    transition: background 0.1s ease;
+    cursor: pointer;
+  }
+  .checkbox:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    width: 5px;
+    height: 11px;
+    opacity: 0;
+    transform: rotate(45deg) scale(0);
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transition: all 0.3s ease;
+    transition-delay: 0.15s;
+  }
+  .checkbox:checked {
+    border-color: transparent;
+    background: #6871f1;
+    animation: jelly 0.6s ease;
+  }
+  @-moz-keyframes jelly {
+    from {
+      transform: scale(1, 1);
+    }
+    30% {
+      transform: scale(1.25, 0.75);
+    }
+    40% {
+      transform: scale(0.75, 1.25);
+    }
+    50% {
+      transform: scale(1.15, 0.85);
+    }
+    65% {
+      transform: scale(0.95, 1.05);
+    }
+    75% {
+      transform: scale(1.05, 0.95);
+    }
+    to {
+      transform: scale(1, 1);
+    }
+  }
+  @-webkit-keyframes jelly {
+    from {
+      transform: scale(1, 1);
+    }
+    30% {
+      transform: scale(1.25, 0.75);
+    }
+    40% {
+      transform: scale(0.75, 1.25);
+    }
+    50% {
+      transform: scale(1.15, 0.85);
+    }
+    65% {
+      transform: scale(0.95, 1.05);
+    }
+    75% {
+      transform: scale(1.05, 0.95);
+    }
+    to {
+      transform: scale(1, 1);
+    }
+  }
+  @-o-keyframes jelly {
+    from {
+      transform: scale(1, 1);
+    }
+    30% {
+      transform: scale(1.25, 0.75);
+    }
+    40% {
+      transform: scale(0.75, 1.25);
+    }
+    50% {
+      transform: scale(1.15, 0.85);
+    }
+    65% {
+      transform: scale(0.95, 1.05);
+    }
+    75% {
+      transform: scale(1.05, 0.95);
+    }
+    to {
+      transform: scale(1, 1);
+    }
+  }
+  @keyframes jelly {
+    from {
+      transform: scale(1, 1);
+    }
+    30% {
+      transform: scale(1.25, 0.75);
+    }
+    40% {
+      transform: scale(0.75, 1.25);
+    }
+    50% {
+      transform: scale(1.15, 0.85);
+    }
+    65% {
+      transform: scale(0.95, 1.05);
+    }
+    75% {
+      transform: scale(1.05, 0.95);
+    }
+    to {
+      transform: scale(1, 1);
+    }
+  }
+  

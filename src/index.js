@@ -36,17 +36,16 @@ tasksContainer.addEventListener('click', e => {
         const editId = "edit" + e.target.id
         const taskEdit = document.getElementById(editId)
         taskEdit.classList.remove('inactive')
-        taskEdit.addEventListener('change', e => {
+        taskEdit.addEventListener('change' || 'blur', e => {
             selectedTask.name = taskEdit.value
-            saveAndRender()
+
         })
     }
-    if (e.target.tagName.toLowerCase() === 'input' & e.target.type.toLowerCase() === 'checkbox') {
+    if (e.target.tagName.toLowerCase() === 'input' && e.target.type.toLowerCase() === 'checkbox') {
         const selectedList = lists.find(list => list.id === selectedListId)
         const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
         selectedTask.complete = e.target.checked
-        save()
-        renderTaskCount(selectedList)
+        saveAndRender()
     }
     if (e.target.tagName.toLowerCase() === 'button') {
         const selectedList = lists.find(list => list.id === selectedListId)
